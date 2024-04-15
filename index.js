@@ -33,6 +33,7 @@ function populateDropdown(selectElement, options) {
       });
 }
     function loadSeason(){
+        const season = document.getElementById('season').value;
         const seasonUrl = `https://ergast.com/api/f1/seasons/${season}`
         fetch(seasonUrl)
         .then(response => response.json())
