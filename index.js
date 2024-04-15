@@ -58,7 +58,8 @@ function loadSeason() {
 
 function loadCircuit() {
     const circuit = document.getElementById('circuit').value;
-    const circuitUrl = `https://ergast.com/api/f1/circuits/${circuit}`;
+    const season = document.getElementById('season').value;
+    const circuitUrl = `https://ergast.com/api/f1/${season}/${circuit}`;
     fetch(circuitUrl)
         .then(response => {
             if (!response.ok){
@@ -68,7 +69,7 @@ function loadCircuit() {
         })
         .then(data => {
             const selectCircuit = document.getElementById('circuit');
-           // populateDropdown(selectCircuit, data.MRData.CircuitTable.Circuits);
+            populateDropdown(selectCircuit, data.MRData.CircuitTable.Circuits);
         })
         .catch(error => {
             console.error('Error fetching circuits:', error);
@@ -109,7 +110,7 @@ document.addEventListener('DOMContentLoaded', () => {
     loadSeason();
 });
 document.getElementById('season').addEventListener('change', () => {
-   loadCircuit();
+    loadCircuit();
 })
 document.getElementById('circuit').addEventListener('change', () => {
     loadConstructor();
