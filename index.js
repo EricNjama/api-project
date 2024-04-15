@@ -25,7 +25,7 @@ function findDriver() {
 }
 function populateDropdown(selectElement, options) {
     selectElement.innerHTML = ''; 
-      options.forEach(option => {
+    options.forEach(option => {
         const optionElement = document.createElement('option');
         optionElement.value = option.value;
         optionElement.textContent = option.content; 
@@ -33,12 +33,12 @@ function populateDropdown(selectElement, options) {
       });
 }
     function loadSeason(){
-        const season = document.getElementById('season').value;
-        const seasonUrl = `https://ergast.com/api/f1/seasons`
+        const seasonUrl = `https://ergast.com/api/f1/seasons/${season}`
         fetch(seasonUrl)
         .then(response => response.json())
         .then(data => {
-            populateDropdown(document.getElementById('season').value, season)
+            const selectSeason = document.getElementById('season')
+            populateDropdown(selectSeason, data.MRData.SeasonTable.Seasons)
         })
         .catch(error => {
             console.error('Error fetching seasons:', error);
@@ -62,7 +62,7 @@ function populateDropdown(selectElement, options) {
         fetch(constructorUrl)
         .then(response => response.json())
         .then(data => {
-            populateDropdown(document.getElementById('constructor').value, constructor)
+            populateDropdown(document.getElementById('constructor'), constructor)
         })
         .catch(error => {
             console.error('Error fetching constructor:', error);
@@ -74,7 +74,7 @@ function populateDropdown(selectElement, options) {
         fetch(driverUrl)
         .then(response => response.json())
         .then(data => {
-            populateDropdown(document.getElementById('driver').value, driver)
+            populateDropdown(document.getElementById('driver'), driver)
         })
         .catch(error => {
             console.error('Error fetching driver:', error);
