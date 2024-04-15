@@ -24,60 +24,82 @@ function findDriver() {
         })
 }
 function populateDropdown(selectElement, options) {
-    selectElement.innerHTML = ''; 
+    selectElement.innerHTML = '';
     options.forEach(option => {
         const optionElement = document.createElement('option');
-        optionElement.value = option.value;
-        optionElement.textContent = option.content; 
+        optionElement.value = option.season;
+        optionElement.textContent = option.season;
         selectElement.appendChild(optionElement);
-      });
+    });
 }
-    function loadSeason(){
-        const seasonUrl = `https://ergast.com/api/f1/seasons/${season}`
-        fetch(seasonUrl)
+
+function loadSeason() {
+    const seasonUrl = `https://ergast.com/api/f1/seasons.json?limit=100&offset=0`;
+    fetch(seasonUrl)
         .then(response => response.json())
         .then(data => {
-            const selectSeason = document.getElementById('season')
-            populateDropdown(selectSeason, data.MRData.SeasonTable.Seasons)
+            const selectSeason = document.getElementById('season');
+            populateDropdown(selectSeason, data.MRData.SeasonTable.Seasons);
         })
         .catch(error => {
             console.error('Error fetching seasons:', error);
-            alert('Failed to fetch seasons. Please try again.')
-        })
-    }
-    function loadCircuit(){
-        const circuitUrl = `https://ergast.com/api/f1/circuits/${circuit}`
-        fetch(circuitUrl)
+            alert('Failed to fetch seasons. Please try again.');
+        });
+}
+
+function loadCircuit() {
+    const circuit = document.getElementById('circuit').value;
+    const circuitUrl = `https://ergast.com/api/f1/circuits/${circuit}`;
+    fetch(circuitUrl)
         .then(response => response.json())
-        .then(data =>{
-            populateDropdown(document.getElementById('circuit').value, circuit)
+        .then(data => {
+            const selectCircuit = document.getElementById('circuit');
+            populateDropdown(selectCircuit, data.MRData.CircuitTable.Circuits);
         })
         .catch(error => {
             console.error('Error fetching circuits:', error);
-            alert('Failed to fetch circuits. Please try again.')
-        })
+            alert('Failed to fetch circuits. Please try again.');
+        });
 }
-    function loadConstructor(){
-        const constructorUrl = `http://ergast.com/api/f1/constructors/${constructor}`
-        fetch(constructorUrl)
+
+function loadConstructor() {
+    const constructor = document.getElementById('constructor').value;
+    const constructorUrl = `https://ergast.com/api/f1/constructors/${constructor}`;
+    fetch(constructorUrl)
         .then(response => response.json())
         .then(data => {
-            populateDropdown(document.getElementById('constructor'), constructor)
+            const selectConstructor = document.getElementById('constructor');
+            populateDropdown(selectConstructor, data.MRData.ConstructorTable.Constructors);
         })
         .catch(error => {
             console.error('Error fetching constructor:', error);
-            alert('Failed to fetch constructor. Please try again.')
-        })
+            alert('Failed to fetch constructor. Please try again.');
+        });
 }
-    function loadDriver(){
-        const driverUrl = `http://ergast.com/api/f1/drivers/${driver}`
-        fetch(driverUrl)
+
+function loadDriver() {
+    const driver = document.getElementById('driver').value;
+    const driverUrl = `https://ergast.com/api/f1/drivers/${driver}`;
+    fetch(driverUrl)
         .then(response => response.json())
         .then(data => {
-            populateDropdown(document.getElementById('driver'), driver)
+            const selectDriver = document.getElementById('driver');
+            populateDropdown(selectDriver, data.MRData.DriverTable.Drivers);
         })
         .catch(error => {
             console.error('Error fetching driver:', error);
-            alert('Failed to fetch driver.Please try again')
-        })
+            alert('Failed to fetch driver. Please try again.');
+        });
 }
+document.addEventListener('DOMContentLoaded', () => {
+    loadSeason();
+});
+document.getElementById('season').addEventListener('change', () => {
+    loadSeason();
+})
+document.getElementById('circuit').addEventListener('change', () => {
+    loadConstructor();
+})
+document.getElementById('constructor').addEventListener('change', () => {
+    loadDriver();
+})
