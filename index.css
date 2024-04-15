@@ -1,0 +1,52 @@
+body {
+    font-family: 'Courier New', Courier, monospace;
+    background-color: slategray;
+    margin: 0;
+    padding: 0;
+  
+}
+  
+.container {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: aliceblue;
+    border-radius: 8px;
+}
+h1 {
+    text-align: center;
+    color: rgb(112, 128, 144);
+}
+label {
+    display: block;
+    margin-bottom: 8px;
+}
+select {
+    width: 100%;
+    padding: 8px;
+    font-size: 16px;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 12px;
+}
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+button:hover {
+    background-color: brown;
+}
+  
+#driverFinder {
+    margin-top: 20px;
+    padding: 20px;
+    border: 1px solid #fff;
+    border-radius: 4px;
+    background-color: #f9f9f9;
+}
+  

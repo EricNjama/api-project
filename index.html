@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang = "en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>F1 Drivers</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+<div class = "container">
+    <h1>Drivers</h1>
+    <div>
+        <label for = "season">Select Season</label>
+        <select id = "season"></select>
+    </div>
+    <div>
+        <label for = "circuit">Select Circuit</label>
+        <select id = "circuit"></select>
+    </div>
+    <div>
+        <label for = "constructor">Select Constructor</label>
+        <select id = "constructor"></select>
+    </div>
+    <div>
+        <label for = "driver">Select Driver</label>
+        <select id = "driver"></select>
+    </div>
+</div>
+<button onclick="findDriver()">Generate Driver Information</button>
+<div id = "driverData"></div>
+
+<script src = "index.js"></script>
+</body>
+</html>
