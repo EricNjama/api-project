@@ -59,7 +59,7 @@ function loadSeason() {
 function loadCircuit() {
     const circuit = document.getElementById('circuit').value;
     const season = document.getElementById('season').value;
-    const circuitUrl = `https://ergast.com/api/f1/${season}/${circuit}`;
+    const circuitUrl = `https://ergast.com/api/f1/${season}/circuits.json?limit=100%offset=0`;
     fetch(circuitUrl)
         .then(response => {
             if (!response.ok){
